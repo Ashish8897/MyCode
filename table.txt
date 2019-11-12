@@ -1,0 +1,43 @@
+create table user_role(user_name varchar(10) primary key,password varchar(10),role_code varchar(10));
+
+create table business(business_id varchar(10) primary key,business_seg varchar2(15));
+
+create table accounts_tbl(account_number number(10) primary key,insured_name varchar(20),insured_city varchar(20),insured_area varchar(20),
+user_name varchar(10) references user_role(user_name));
+
+create table policy_tbl(account_number number(10) references accounts_tbl(account_number),policy_no number(10) primary key,policy_premium number(8,2),
+bussiness_id references business(business_id));
+
+create table questions_tbl(business_id varchar(10) references business(business_id),question1 varchar2(40),
+question2 varchar2(40),question3 varchar2(40),question4 varchar2(40),question5 varchar2(40));
+
+create table answers_tbl(policy_no number(10) references policy_tbl(policy_no),answer1 varchar2(40),
+answer2 varchar2(40),answer3 varchar2(40),answer4 varchar2(40),answer5 varchar2(40));  
+
+insert into user_role values('root','root','admin');
+
+insert into user_role values('ashish','abc123','agent');
+
+insert into user_role values('ashutosh','abc123','agent');
+
+insert into user_role values('manisha','abc123','insured');
+
+insert into user_role values('sumantha','abc123','insured');
+
+insert into user_role values('kavitha','abc123','insured');
+
+insert into business values('001','restaurent');
+insert into business values('002','Apartment');
+insert into business values('003','Business Auto');
+insert into business values('004','Merchant');
+
+ insert into accounts_tbl values(15001,'ashish','hyderabad','telangana','ashish');
+
+insert into policy_tbl values(15001,121,5000,'004');
+
+
+
+SQL> create table answers_tbl(policy_no number(10),answer1 varchar2(40),weightag
+e1 number(10),answer2 varchar2(40),weightage2 number(10),answer3 varchar2(40),we
+ightage3 number(10),answer4 varchar2(40),weightage4 number(10),answer5 varchar2(
+40),weightage5 number(10));
